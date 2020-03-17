@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>Memory leak</title>
+
+    <style>
+      div.block {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        display: inline-block;
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>This program has a memory leak because timers are not removed correctly.</p>
+
+    <div>
+      <button id="add">Add</button>
+    </div>
+
+    <script>
+      document.getElementById("add")
+        .addEventListener("click", function () {
+          const newDiv = document.createElement("div");
+          newDiv.classList.add("block");
+          document.body.appendChild(newDiv);
+
+          setInterval(() => {
+            newDiv.style.backgroundColor
+              = newDiv.style.backgroundColor === "blue" ? "red" : "blue";
+          }, 1000);
+
+          newDiv.addEventListener("click", function () {
+            newDiv.remove();
+          });
+        });
+    </script>
+  </body>
+</html>
