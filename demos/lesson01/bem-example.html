@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <title>BEM example</title>
+    
+    <style>
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: #414141;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: white;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        border-radius: 4px;
+      }
+
+      .btn:hover {
+        opacity: 0.8;
+      }
+
+      .btn__icon {
+        background-color: rgba(255, 255, 255, 0.3);
+        display: inline-block;
+        margin-right: 8px;
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 16px;
+      }
+
+      .btn--danger {
+        background-color: #ff4141;
+      }
+
+      .btn--success {
+        background-color: #55bf55;
+      }
+
+    </style>
+  </head>
+  <body>
+    <a class="btn" href="#">
+      <i class="material-icons btn__icon">favorite</i>
+      <span class="btn__text">Click me</span>
+    </a>
+
+    <a class="btn btn--danger" href="#">
+      <i class="material-icons btn__icon">delete</i>
+      <span class="btn__text">Delete</span>
+    </a>
+
+    <a class="btn btn--success" href="#">
+      <i class="material-icons btn__icon">check</i>
+      <span class="btn__text">Go</span>
+    </a>
+
+  </body>
+</html>
