@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title></title>
+
+    <style>
+      p {
+        color: blue;
+        font-size: 20px;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <div id="shadow">
+    </div>
+
+    <p>Paragraph outside shadow DOM.</p>
+
+    <script>
+      const parentEl = document.getElementById("shadow");
+
+      let shadow = parentEl.attachShadow({ mode: "open" });
+
+      const pEl = document.createElement("p");
+      pEl.textContent = "Paragraph inside shadow DOM";
+
+      styleEl = document.createElement("style");
+      styleEl.innerHTML = `
+        p {
+          color: red;
+          font-size: 30px;
+        }
+      `;
+
+      shadow.appendChild(styleEl);
+      shadow.appendChild(pEl);
+    </script>
+  </body>
+</html>
