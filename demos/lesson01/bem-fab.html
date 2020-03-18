@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>BEM fab</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <style>
+      .fab {
+        border: none;
+        background-color: #6200ec;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fab:active {
+        opacity: 0.8;
+      }
+
+      .fab--mini {
+        width: 40px;
+        height: 40px;
+      }
+
+      .fab__icon {
+        color: white;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h1>Floating action button</h1>
+
+    <button class="fab">
+      <i class="fab__icon material-icons">add</i>
+    </button>
+
+    <button class="fab fab--mini">
+      <i class="fab__icon material-icons">add</i>
+    </button>
+  </body>
+</html>
