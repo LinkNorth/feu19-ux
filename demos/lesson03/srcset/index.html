@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Responsive kitten</title>
+    
+  </head>
+
+  <body>
+    <h1>This is an image of a kitten</h1>
+
+    <p>This shows how the "srcset" attribute for images can be used to load different images based on the screen pixel density.</p>
+
+    <p>Try reloading the page with different devices (emulate in DevTools) and see what happens.</p>
+
+    <img
+      src="kitten.jpg"
+      alt="A cute kitten"
+      srcset="kitten.jpg 1x, kitten.2x.jpg 2x, kitten.3x.jpg 3x"
+      width="400"
+      height="225"
+    />
+  </body>
+</html>

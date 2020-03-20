@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lazy Loading with IntersectionObserver</title>
+
+    <style>
+      #images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      #images img {
+        margin: 5px;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+    </style>
+      
+  </head>
+  <body>
+    <div id="images"></div>
+
+    <script>
+      const imageContainer = document.getElementById("images");
+
+      const options = {
+        root: null,
+        rootMargin: "10px",
+        threshold: 0.0,
+      };
+
+      const observer = new IntersectionObserver(callback, options)
+
+      function callback(entries) {
+        for (let i = 0; i < entries.length; i += 1) {
+          if (entries[i].isIntersecting) {
+            entries[i].target.src = entries[i].target.dataset.src;
+            observer.unobserve(entries[i].target);
+          }
+        }
+      }
+
+      for (let i = 0; i < 20; i += 1) {
+        const imgEl =  document.createElement("img");
+        imgEl.width = 200;
+        imgEl.height = 200;
+
+        imgEl.dataset.src = "https://picsum.photos/200?" + i;
+
+        imageContainer.appendChild(imgEl);
+
+        observer.observe(imgEl);
+      }
+
+    </script>
+  </body>
+</html>
