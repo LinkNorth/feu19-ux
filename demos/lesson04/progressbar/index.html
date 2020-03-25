@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>Progress bawr</title>
+
+    <style>
+      .progressbar {
+        width: 500px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .progressbar__progress {
+        width: 0px;
+        height: 40px;
+        transition: width 1s linear;
+        background-color: red;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h1>Progress bar</h1>
+
+    <div role="progressbar" class="progressbar">
+      <div class="progressbar__progress"></div>
+    </div>
+
+    <script>
+      let progress = 0;
+      const progressbarEl = document.querySelector(".progressbar");
+      const progressEl = document.querySelector(".progressbar__progress");
+
+
+
+      const interval = setInterval(() => {
+        progressEl.style.width = `${progress *  5}px`;
+
+        progressEl.setAttribute("aria-valuenow", progress);
+        progressEl.setAttribute("aria-valuemin", 0);
+        progressEl.setAttribute("aria-valuemax", 100);
+
+        if (progress === 100) {
+          return clearInterval(interval);
+        }
+
+        progress += 1;
+
+        
+      }, 50);
+    </script>
+  </body>
+</html>

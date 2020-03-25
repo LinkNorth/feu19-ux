@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>Trap focus</title>
+
+    <style>
+      .dialog {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <button id="show-dialog">Show dialog</button>
+    </div>
+
+    <div class="dialog" style="display: none;">
+      <p>I am a dialog</p>
+
+      <button id="close-dialog">Close</button>
+      <button>Another button</button>
+    </div>
+
+    <script>
+      const dialogEl = document.querySelector(".dialog");
+      const showDialogButtonEl = document.querySelector("#show-dialog");
+      const closeDialogButtonEl = document.querySelector("#close-dialog");
+
+      let stopTrapFocus;
+
+      showDialogButtonEl.addEventListener("click", () => {
+        dialogEl.style.display = "block";
+        stopTrapFocus = trapFocus(dialogEl);
+      });
+
+      closeDialogButtonEl.addEventListener("click", () => {
+        dialogEl.style.display= "none";
+
+        stopTrapFocus();
+      });
+
+      function trapFocus(element, namespace) {
+        var focusableEls = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'),
+          firstFocusableEl = focusableEls[0];  
+        lastFocusableEl = focusableEls[focusableEls.length - 1];
+        KEYCODE_TAB = 9;
+
+        function onKeydown(e) {
+          var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+          if (!isTabPressed) { 
+            return; 
+          }
+
+          if ( e.shiftKey ) /* shift + tab */ {
+            if (document.activeElement === firstFocusableEl) {
+              lastFocusableEl.focus();
+              e.preventDefault();
+            }
+          } else /* tab */ {
+            if (document.activeElement === lastFocusableEl) {
+              firstFocusableEl.focus();
+              e.preventDefault();
+            }
+          }
+        }
+
+        element.addEventListener('keydown', onKeydown);
+
+        return () => {
+          element.removeEventListener('keydown', onKeydown);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>Accessible progressbar</title>
+
+    <style>
+      .progressbar {
+        height: 40px;
+        width: 500px;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .progressbar__progress {
+        height: 40px;
+        width: 0px;
+        background-color: green;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <div role="progressbar" aria-valuemin="0" aria-valuemax="100" class="progressbar">
+      <div class="progressbar__progress"></div>
+    </div>
+
+    <script>
+      let progress = 0;
+
+      const progressbarEl = document.querySelector(".progressbar");
+      const progressEl = document.querySelector(".progressbar__progress");
+
+      const interval = setInterval(() => {
+        progressEl.style.width = `${progress * 5}px`;
+        progressbarEl.setAttribute("aria-valuenow", progress);
+
+        if (progress === 100) {
+          return clearInterval(interval);
+        }
+
+        progress += 1;
+      }, 400);
+    </script>
+  </body>
+</html>
