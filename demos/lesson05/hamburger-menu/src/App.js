@@ -24,7 +24,7 @@ function Sidebar({ isOpen, onClickMask }) {
   }
 
   return (
-    <FocusTrap paused={!isOpen}>
+    <FocusTrap active={isOpen} paused={!isOpen}>
       <div>
         {isOpen && (
           <label onClick={onClickMask} className="Sidebar__mask">

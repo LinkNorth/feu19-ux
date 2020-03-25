@@ -2,7 +2,6 @@
   height: 60px;
   width: 100%;
   background-color: red;
-
   display: flex;
   align-items: center;
 }
@@ -52,6 +51,7 @@
 .Sidebar--closed {
   box-shadow: none;
   transform: translateX(-200px);
+  visibility: hidden;
 }
 
 .Sidebar__menu {
