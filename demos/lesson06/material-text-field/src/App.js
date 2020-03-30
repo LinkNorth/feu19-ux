@@ -40,6 +40,20 @@ function App() {
           placeholder="Label"
         />
       </div>
+      <div
+        style={{
+          margin: 20,
+        }}
+      >
+        <TextField
+          type="text"
+          value={value}
+          disabled={disabled}
+          onChange={(e) => updateValue(e.target.value)}
+          placeholder="Label"
+        />
+      </div>
+
     </>
   );
 }

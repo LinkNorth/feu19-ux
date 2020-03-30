@@ -1,38 +1,41 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import "./TextField.css";
 
+let currentId = 0;
+
+function getNextId() {
+  let rv = `text-field-${currentId}`;
+  currentId += 1;
+  return rv;
+}
+
 export default function TextField({
-  type = "Text",
   placeholder,
   value = "",
-  disabled = false,
   ...props
 }) {
   let placeholderClassName = "TextField__placeholder";
-  let containerClassName = "TextField";
+
+  const inputId = useMemo(getNextId, []);
 
   if (value.length > 0) {
     placeholderClassName += " TextField__placeholder--top";
   }
 
-  if (disabled) {
-    containerClassName += " TextField--disabled";
-  }
-
   return (
-    <div className={containerClassName}>
+    <div className="TextField">
       <input
         className="TextField__input"
-        type={type}
-        disabled={disabled}
+        value={value}
         {...props}
+        id={inputId}
       />
+      <label htmlFor={inputId} className="TextField__label" />
       <span className={placeholderClassName}>
         {placeholder}
       </span>
-      <label className="TextField__label"></label>
-      <div className="TextField__underline"></div>
+      <div className="TextField__underline" />
     </div>
   );
 };

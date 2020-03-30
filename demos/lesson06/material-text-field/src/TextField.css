@@ -2,62 +2,79 @@
   display: inline-block;
   width: 280px;
   height: 56px;
-  font-family: "Roboto", sans-serif;
   position: relative;
-}
-
-.TextField--disabled {
-  opacity: 0.6
+  font-family: "Roboto", sans-serif;
 }
 
 .TextField__input {
-  border: none;
   position: absolute;
   background: transparent;
+  border: none;
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  position: absolute;
   left: 12px;
-  bottom: 13px;
+  bottom: 11px;
+  font-size: 16px;
+  color: #595959;
+  caret-color: #6202ee;
+  pointer-events: none;
 }
 
 .TextField__input:focus {
   outline: none;
 }
 
+.TextField__label {
+  display: inline-block;
+  background-color: #e0e0e0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #727272;
+  box-sizing: border-box;
+  border-radius: 4px 4px 0 0;
+  cursor: text;
+}
+
+.TextField__label:hover {
+  background-color: #d7d7d7;
+}
+
+.TextField__input:disabled ~ .TextField__label {
+  border-bottom: 0;
+}
+
+.TextField__input:disabled {
+  color: #8a8a8a;
+}
+
+.TextField__input:disabled ~ .TextField__placeholder {
+  color: #8a8a8a;
+}
+
 .TextField__placeholder {
   position: absolute;
   left: 12px;
-  bottom: 14px;
-  color: #585858;
-  transition: all 0.2s linear;
+  bottom: 12px;
+  transition: font-size 0.2s linear, transform 0.2s linear;
+  color: #595959;
   pointer-events: none;
-  font-weight: 500;
 }
 
 .TextField__placeholder--top,
-.TextField__input:focus + .TextField__placeholder {
+.TextField__input:focus ~ .TextField__placeholder {
   font-size: 12px;
   transform: translateY(-20px);
+  color: #1c1c1c;
 }
 
-.TextField__input:focus + .TextField__placeholder {
+.TextField__input:focus ~ .TextField__placeholder {
   color: #6202ee;
-}
-
-.TextField__label {
-  display: inline-block;
-  background-color: #d7d7d7;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px 4px 0 0;
-  border-bottom: 1px solid #727272;
-  box-sizing: border-box;
 }
 
 .TextField__underline {
   position: absolute;
-  width: 100%;
   left: 0;
+  right: 0;
   bottom: 0;
   height: 2px;
   background-color: #6202ee;
